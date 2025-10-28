@@ -31,7 +31,11 @@
 				<Link to="/signup" class="w-full sm:w-auto">Get Started</Link>
 			</div>
 		</div>
-		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="z-10">
+
+		<svg
+			className="absolute bottom-0 left-0 w-full h-auto"
+			xmlns="http://www.w3.org/2000/svg"
+			viewBox="0 0 1440 320">
 			<path
 				fill="#0099ff"
 				fillOpacity="1"
