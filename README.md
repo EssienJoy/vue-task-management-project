@@ -14,7 +14,7 @@
 ## How to Setup the project
 
 ## Step 1
-Open your vs code termincal or laptop terminal and input git clone 
+Open your vs code termincal or laptop terminal and input git clone https://github.com/EssienJoy/vue-task-management-project.git
 
 ## Step 2
 Open the folder in vs code
