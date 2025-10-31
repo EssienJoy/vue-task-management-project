@@ -1,3 +1,6 @@
+import { useToast } from "vue-toastification";
+const toast = useToast();
+
 
 export default async function loginApi(email) {
     const res = await fetch(`https://eazy-mart-users-data.onrender.com/users?email=${email}`);

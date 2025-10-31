@@ -3,7 +3,7 @@ import { getTickets } from "../servers/actions.js";
 
 export function useFetchTickets() {
     const { isPending, data: tickets } = useQuery({
-        queryKey: ['todos'],
+        queryKey: ['tickets'],
         queryFn: getTickets,
     });
 
