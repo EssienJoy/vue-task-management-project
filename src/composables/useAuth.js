@@ -4,7 +4,8 @@ import { useToast } from 'vue-toastification';
 import loginApi from '../auth/login';
 
 
-const isAuthenticated = ref(false);
+const isAuthenticated = ref(!!localStorage.getItem("userId"));
+const loading = ref(false);
 export function useAuth() {
     const router = useRouter();
     const toast = useToast();
@@ -15,26 +16,37 @@ export function useAuth() {
             return;
         }
 
-        if (email.includes("@") && email.includes(".com")) {
+
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            toast.error("Invalid email format.");
+            return;
+        }
+
+        try {
+            loading = true;
             const data = await loginApi(email);
             const userData = data[0];
 
             if (!userData) {
                 toast.error("User not found.");
+                isAuthenticated.value = false;
                 return;
             }
 
-            if (userData?.password === password) {
-                isAuthenticated.value = true;
+            if (userData.password === password) {
                 localStorage.setItem("userId", userData.userId);
-                router.push("/dashboard");
+                isAuthenticated.value = true;
+                navigate("/dashboard");
                 toast.success("Welcome Back ✅");
             } else {
                 toast.error("Incorrect password.");
+                dispatch({ type: "logout" });
             }
-        } else {
-            toast.error("❌ Incorrect, email must include @ and .com");
+        } catch (err) {
+            toast.error("Login failed. Try again later");
+            dispatch({ type: "logout" });
         }
+
     }
 
     function logout() {
@@ -46,6 +58,7 @@ export function useAuth() {
 
     return {
         isAuthenticated: readonly(isAuthenticated),
+        loading,
         login,
         logout
     };

@@ -4,7 +4,7 @@
 	import Input from "../ui/Input.vue";
 	import Label from "../ui/Label.vue";
 
-	const { login } = useAuth();
+	const { login, loading } = useAuth();
 
 	const form = reactive({
 		email: "",
@@ -34,7 +34,7 @@
 		<button
 			type="submit"
 			class="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 rounded-lg transition">
-			Login
+			{loading ? "Logging..." : "Login"}
 		</button>
 	</form>
 </template>
