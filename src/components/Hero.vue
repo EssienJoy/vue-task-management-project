@@ -7,7 +7,7 @@
 			class="absolute bottom-1/4 left-1/3 w-3 h-3 bg-blue-300 rounded-full opacity-50"></div>
 
 		<div
-			class="max-w-[var(--container-main)] mx-auto px-[var(--spacing-main)] flex-1 flex flex-col gap-4 md:gap-6 items-center justify-center mt-12 md:mt-20">
+			class="max-w-[var(--container-main)] mx-auto px-[var(--spacing-main)] z-100 flex-1 flex flex-col gap-4 md:gap-6 items-center justify-center mt-12 md:mt-20">
 			<h1
 				class="font-bold text-4xl sm:text-5xl md:text-6xl text-center text-gray-900 leading-tight px-4">
 				Simplify Ticket Tracking with Ease
