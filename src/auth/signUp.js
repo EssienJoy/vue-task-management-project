@@ -1,6 +1,6 @@
 export async function signUpApi(userData) {
     try {
-        const res = await fetch("http://localhost:3000/users", {
+        const res = await fetch("https://eazy-mart-users-data.onrender.com/users", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
