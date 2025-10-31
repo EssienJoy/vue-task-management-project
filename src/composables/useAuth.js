@@ -23,7 +23,7 @@ export function useAuth() {
         }
 
         try {
-            loading = true;
+            loading.value = true;
             const data = await loginApi(email);
             const userData = data[0];
 
@@ -36,15 +36,17 @@ export function useAuth() {
             if (userData.password === password) {
                 localStorage.setItem("userId", userData.userId);
                 isAuthenticated.value = true;
-                navigate("/dashboard");
+                router.push("/dashboard");
                 toast.success("Welcome Back ✅");
             } else {
                 toast.error("Incorrect password.");
-                dispatch({ type: "logout" });
+                isAuthenticated.value = false;
             }
         } catch (err) {
             toast.error("Login failed. Try again later");
-            dispatch({ type: "logout" });
+            isAuthenticated.value = false;
+        } finally {
+            loading.value = false;
         }
 
     }
