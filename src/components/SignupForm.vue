@@ -2,13 +2,15 @@
 	import { reactive } from "vue";
 	import Input from "../ui/Input.vue";
 	import Label from "../ui/Label.vue";
-	import { signUpApi } from "../auth/signUp.js";
+	import { generateUserId, signUpApi } from "../auth/signUp.js";
 	import { useToast } from "vue-toastification";
 	import { useMutation } from "@tanstack/vue-query";
 	import { useRouter } from "vue-router";
 
 	const toast = useToast();
 	const router = useRouter();
+
+	const userId = generateUserId();
 
 	const form = reactive({
 		userName: "",
@@ -46,6 +48,7 @@
 
 		if (form.email.includes("@") && form.email.includes(".com")) {
 			signUp({
+				userId,
 				userName: form.userName,
 				email: form.email,
 				password: form.password,
